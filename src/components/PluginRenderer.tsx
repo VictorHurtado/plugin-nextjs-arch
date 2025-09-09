@@ -1,10 +1,10 @@
 'use client';
 
 import { pluginRegistry } from '@/lib/plugin-registry';
-import { Plugin, PluginContext } from '@/types/plugin';
+import { Plugin, PluginContext } from '@/plugins/shared/types';
 
 interface PluginRendererProps {
-  injectionPoint: 'header' | 'sidebar' | 'main' | 'modal' | 'budget-detail';
+  injectionPoint: string;
   context?: PluginContext;
 }
 

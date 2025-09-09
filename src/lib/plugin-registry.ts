@@ -1,10 +1,23 @@
-import { Plugin } from '@/types/plugin';
+import { Plugin } from '@/plugins/shared/types';
+import { pluginLoader } from './plugin-loader';
 
 class PluginRegistry {
   private plugins: Map<string, Plugin> = new Map();
   private injectionPoints: Map<string, Plugin[]> = new Map();
 
-  // Registrar un plugin
+  // Registrar un plugin usando el loader
+  async registerPlugin(manifest: any, component: React.ComponentType<any>) {
+    try {
+      const plugin = await pluginLoader.loadPlugin(manifest, component);
+      this.register(plugin);
+      return plugin;
+    } catch (error) {
+      console.error('Error cargando plugin:', error);
+      throw error;
+    }
+  }
+
+  // Registrar un plugin directamente (método legacy)
   register(plugin: Plugin) {
     this.plugins.set(plugin.id, plugin);
     

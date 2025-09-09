@@ -3,15 +3,25 @@
 import { useEffect, useState } from 'react';
 import { PluginRenderer } from '@/components/PluginRenderer';
 import { pluginRegistry } from '@/lib/plugin-registry';
-import { budgetPlugin } from '@/plugins/budget-plugin';
 import { BudgetDetailModal } from '@/components/BudgetDetailModal';
+// Importar el nuevo plugin independiente
+import { manifest as budgetPluginManifest, BudgetPlugin } from '@/plugins/budget-plugin';
 
 export default function Home() {
   const [showDetailModal, setShowDetailModal] = useState(false);
 
   useEffect(() => {
-    // Registrar el plugin de presupuestos
-    pluginRegistry.register(budgetPlugin);
+    // Cargar el plugin usando el nuevo sistema
+    const loadBudgetPlugin = async () => {
+      try {
+        await pluginRegistry.registerPlugin(budgetPluginManifest, BudgetPlugin);
+        console.log('Plugin de presupuestos cargado exitosamente');
+      } catch (error) {
+        console.error('Error cargando plugin:', error);
+      }
+    };
+
+    loadBudgetPlugin();
   }, []);
 
   // Datos de ejemplo del presupuesto
@@ -66,7 +76,6 @@ export default function Home() {
                   </button>
                 </div>
               </div>
-
             </div>
           </main>
         </div>
@@ -81,7 +90,8 @@ export default function Home() {
         />
       )}
 
-
+      {/* Plugins modales */}
+      <PluginRenderer injectionPoint="modal" />
     </div>
   );
 }

@@ -1,0 +1,19 @@
+{
+    "name": "budget-plugin",
+    "version": "1.0.0",
+    "description": "Plugin para gestión de presupuestos",
+    "main": "index.ts",
+    "dependencies": {
+      "react": "^18.0.0"
+    },
+    "plugin": {
+      "id": "budget-plugin",
+      "name": "Gestión de Presupuestos",
+      "version": "1.0.0",
+      "description": "Plugin para gestión de presupuestos",
+      "author": "Tu Nombre",
+      "injectionPoints": ["budget-detail"],
+      "dependencies": [],
+      "entryPoint": "BudgetPlugin"
+    }
+  }

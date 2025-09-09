@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { PluginRenderer } from './PluginRenderer';
-import { PluginContext } from '@/types/plugin';
+import { PluginContext } from '@/plugins/shared/types';
 
 interface BudgetDetailModalProps {
   isOpen: boolean;

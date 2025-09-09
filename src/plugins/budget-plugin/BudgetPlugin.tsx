@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Plugin, PluginContext } from '@/types/plugin';
+import { PluginContext } from '../shared/types';
 
-// Componente del plugin que se inyecta en el modal de detalle
-const BudgetModal = ({ context }: { context?: PluginContext }) => {
+// Componente del plugin completamente independiente
+export const BudgetPlugin = ({ context }: { context?: PluginContext }) => {
   const [showPluginModal, setShowPluginModal] = useState(false);
   const [pluginData, setPluginData] = useState('');
 
@@ -134,12 +134,4 @@ const BudgetModal = ({ context }: { context?: PluginContext }) => {
       )}
     </>
   );
-};
-
-// Definición del plugin
-export const budgetPlugin: Plugin = {
-  id: 'budget-plugin',
-  name: 'Gestión de Presupuestos',
-  component: BudgetModal,
-  injectionPoint: 'budget-detail'
 };
