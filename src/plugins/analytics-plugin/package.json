@@ -1,0 +1,19 @@
+{
+    "name": "analytics-plugin",
+    "version": "1.0.0",
+    "description": "Plugin de Analytics para análisis de datos",
+    "main": "index.ts",
+    "dependencies": {
+      "react": "^18.0.0"
+    },
+    "plugin": {
+      "id": "analytics-plugin",
+      "name": "Analytics Dashboard",
+      "version": "1.0.0",
+      "description": "Plugin para análisis y exportación de datos",
+      "author": "Tu Nombre",
+      "injectionPoints": ["budget-detail", "main"],
+      "dependencies": [],
+      "entryPoint": "AnalyticsPlugin"
+    }
+  }

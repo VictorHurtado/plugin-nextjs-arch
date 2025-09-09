@@ -6,6 +6,7 @@ import { pluginRegistry } from '@/lib/plugin-registry';
 import { BudgetDetailModal } from '@/components/BudgetDetailModal';
 // Importar el nuevo plugin independiente
 import { manifest as budgetPluginManifest, BudgetPlugin } from '@/plugins/budget-plugin';
+import { manifest as analyticsPluginManifest, AnalyticsPlugin } from '@/plugins/analytics-plugin';
 
 export default function Home() {
   const [showDetailModal, setShowDetailModal] = useState(false);
@@ -16,6 +17,10 @@ export default function Home() {
       try {
         await pluginRegistry.registerPlugin(budgetPluginManifest, BudgetPlugin);
         console.log('Plugin de presupuestos cargado exitosamente');
+
+      // Cargar plugin de analytics
+      await pluginRegistry.registerPlugin(analyticsPluginManifest, AnalyticsPlugin);
+      console.log('Plugin de analytics cargado exitosamente');
       } catch (error) {
         console.error('Error cargando plugin:', error);
       }
